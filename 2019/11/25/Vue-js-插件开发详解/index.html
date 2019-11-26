@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>MySQL数据库增删改查SQL语句 | Hexo</title>
+  <title>Vue.js 插件开发详解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MySQL数据库增删改查SQL语句 查看数据库1show databases;  使用数据库1use 数据库名;  创建数据库1CREATE DATABASE 数据库名;  删除数据库1DROP DATABASE 数据库名;  创建表1create table 表名(    列名1 类型(长度) [约束],    列名2 类型(长度) [约束],    ……);  长度区别int类型带长度：不影响">
+  <meta name="description" content="随着 Vue.js 越来越火，Vue.js 的相关插件也在不断的被贡献出来，数不胜数。比如官方推荐的 vue-router、vuex 等，都是非常优秀的插件。但是我们更多的人还只停留在使用的阶段，比较少自己开发。所以接下来会通过一个简单的 vue-toast 插件，来了解掌握插件的开发和使用。 认识插件想要开发插件，先要认识一个插件是什么样子的。 Vue.js 的插件应当有一个公开方法 insta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL数据库增删改查SQL语句">
-<meta property="og:url" content="http://yoursite.com/2019/10/30/MySQL数据库增删改查SQL语句/index.html">
+<meta property="og:title" content="Vue.js 插件开发详解">
+<meta property="og:url" content="http://yoursite.com/2019/11/25/Vue-js-插件开发详解/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MySQL数据库增删改查SQL语句 查看数据库1show databases;  使用数据库1use 数据库名;  创建数据库1CREATE DATABASE 数据库名;  删除数据库1DROP DATABASE 数据库名;  创建表1create table 表名(    列名1 类型(长度) [约束],    列名2 类型(长度) [约束],    ……);  长度区别int类型带长度：不影响">
+<meta property="og:description" content="随着 Vue.js 越来越火，Vue.js 的相关插件也在不断的被贡献出来，数不胜数。比如官方推荐的 vue-router、vuex 等，都是非常优秀的插件。但是我们更多的人还只停留在使用的阶段，比较少自己开发。所以接下来会通过一个简单的 vue-toast 插件，来了解掌握插件的开发和使用。 认识插件想要开发插件，先要认识一个插件是什么样子的。 Vue.js 的插件应当有一个公开方法 insta">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="c:%5CUsers%5CCZ%5CDesktop%5Ctimg.jpg">
-<meta property="og:updated_time" content="2019-10-30T02:41:22.528Z">
+<meta property="og:updated_time" content="2019-11-26T00:07:45.547Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL数据库增删改查SQL语句">
-<meta name="twitter:description" content="MySQL数据库增删改查SQL语句 查看数据库1show databases;  使用数据库1use 数据库名;  创建数据库1CREATE DATABASE 数据库名;  删除数据库1DROP DATABASE 数据库名;  创建表1create table 表名(    列名1 类型(长度) [约束],    列名2 类型(长度) [约束],    ……);  长度区别int类型带长度：不影响">
-<meta name="twitter:image" content="c:%5CUsers%5CCZ%5CDesktop%5Ctimg.jpg">
+<meta name="twitter:title" content="Vue.js 插件开发详解">
+<meta name="twitter:description" content="随着 Vue.js 越来越火，Vue.js 的相关插件也在不断的被贡献出来，数不胜数。比如官方推荐的 vue-router、vuex 等，都是非常优秀的插件。但是我们更多的人还只停留在使用的阶段，比较少自己开发。所以接下来会通过一个简单的 vue-toast 插件，来了解掌握插件的开发和使用。 认识插件想要开发插件，先要认识一个插件是什么样子的。 Vue.js 的插件应当有一个公开方法 insta">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,151 +154,56 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MySQL数据库增删改查SQL语句" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Vue-js-插件开发详解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MySQL数据库增删改查SQL语句
+      Vue.js 插件开发详解
     </h1>
   
 
         
-        <a href="/2019/10/30/MySQL数据库增删改查SQL语句/" class="archive-article-date">
-  	<time datetime="2019-10-30T02:41:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-30</time>
+        <a href="/2019/11/25/Vue-js-插件开发详解/" class="archive-article-date">
+  	<time datetime="2019-11-25T14:18:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="MySQL数据库增删改查SQL语句"><a href="#MySQL数据库增删改查SQL语句" class="headerlink" title="MySQL数据库增删改查SQL语句"></a>MySQL数据库增删改查SQL语句</h3><p><img src="C:%5CUsers%5CCZ%5CDesktop%5Ctimg.jpg" alt></p>
-<h5 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+        <p>随着 Vue.js 越来越火，Vue.js 的相关插件也在不断的被贡献出来，数不胜数。比如官方推荐的 vue-router、vuex 等，都是非常优秀的插件。但是我们更多的人还只停留在使用的阶段，比较少自己开发。所以接下来会通过一个简单的 vue-toast 插件，来了解掌握插件的开发和使用。</p>
+<h2 id="认识插件"><a href="#认识插件" class="headerlink" title="认识插件"></a>认识插件</h2><p>想要开发插件，先要认识一个插件是什么样子的。</p>
+<p>Vue.js 的插件应当有一个公开方法 install 。这个方法的第一个参数是 Vue 构造器 , 第二个参数是一个可选的选项对象:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyPlugin.install = function (Vue, options) &#123;  Vue.myGlobalMethod = function () &#123;  // 1. 添加全局方法或属性，如: vue-custom-element    // 逻辑...  &#125;  Vue.directive(&apos;my-directive&apos;, &#123;  // 2. 添加全局资源：指令/过滤器/过渡等，如 vue-touch    bind (el, binding, vnode, oldVnode) &#123;      // 逻辑...    &#125;    ...  &#125;)  Vue.mixin(&#123;    created: function () &#123;  // 3. 通过全局 mixin方法添加一些组件选项，如: vuex      // 逻辑...    &#125;    ...  &#125;)  Vue.prototype.$myMethod = function (options) &#123;  // 4. 添加实例方法，通过把它们添加到 Vue.prototype 上实现    // 逻辑...  &#125;&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名;</span><br></pre></td></tr></table></figure>
+<p>接下来要讲到的 vue-toast 插件则是通过添加实例方法实现的。我们先来看个小例子。先新建个js文件来编写插件：toast.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// toast.jsvar Toast = &#123;&#125;;Toast.install = function (Vue, options) &#123;    Vue.prototype.$msg = &apos;Hello World&apos;;&#125;module.exports = Toast;</span><br></pre></td></tr></table></figure>
 
-<h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE 数据库名;</span><br></pre></td></tr></table></figure>
+<p>在 main.js 中，需要导入 toast.js 并且通过全局方法 Vue.use() 来使用插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// main.jsimport Vue from &apos;vue&apos;;import Toast from &apos;./toast.js&apos;;Vue.use(Toast);</span><br></pre></td></tr></table></figure>
 
-<h5 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE 数据库名;</span><br></pre></td></tr></table></figure>
+<p>然后，我们在组件中来获取该插件定义的 $msg 属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// App.vueexport default &#123;    mounted()&#123;        console.log(this.$msg);         // Hello World    &#125;&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(    列名1 类型(长度) [约束],    列名2 类型(长度) [约束],    ……);</span><br></pre></td></tr></table></figure>
+<p>可以看到，控制台成功的打印出了 Hello World 。既然 $msg 能获取到，那么我们就可以来实现我们的 vue-toast 插件了。</p>
+<h2 id="开发-vue-toast"><a href="#开发-vue-toast" class="headerlink" title="开发 vue-toast"></a>开发 vue-toast</h2><p>需求：在组件中通过调用 this.$toast(‘网络请求失败’) 来弹出提示，默认在底部显示。可以通过调用 this.$toast.top() 或 this.$toast.center() 等方法来实现在不同位置显示。 </p>
+<p>整理一下思路，弹出提示的时候，我可以在 body 中添加一个 div 用来显示提示信息，不同的位置我通过添加不同的类名来定位，那就可以开始写了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// toast.jsvar Toast = &#123;&#125;;var showToast = false;  // showToast 用于存储toast的显示状态Toast.install = function (Vue, options) &#123;    Vue.prototype.$toast = (tips) =&gt; &#123;        let toastTpl = Vue.extend(&#123;     // 1、创建构造器，定义好提示信息的模板            data()&#123;                return &#123;                    show: showToast                &#125;            &#125;,            template: &apos;&lt;div v-show=&quot;show&quot; class=&quot;vue-toast&quot;&gt;&apos; + tips + &apos;&lt;/div&gt;&apos;        &#125;);        var vm = new toastTpl();        // 2、创建实例        var tpl = vm.$mount().$el;      // 3、挂载实例                document.body.appendChild(tpl); // 4、使用原生DOM API把它插入文档中        vm.show = showToast = true;     // 5、显示该元素                setTimeout(function () &#123;        // 6、延迟2.5秒后隐藏该元素            vm.show = showToast = false;        &#125;, 2500)    &#125;&#125;module.exports = Toast;</span><br></pre></td></tr></table></figure>
 
-<h5 id="长度区别"><a href="#长度区别" class="headerlink" title="长度区别"></a>长度区别</h5><p>int类型带长度：不影响存取值，即使设定的值超出了长度的范畴，也能存，如果没有达到设定的长度，则使用空格自动填充到设定的长度<br>char类型：不可变字符，设定的长度就是规定当前字段能存的数据的最大长度，若超出长度，则会报错，若没有达到长度，使用空格填充到设定的长度<br>varchar：可变字符，设定的长度同样是规定当前字段能存的数据的最大长度，若超出长度，则会报错，若没有达到长度，不会使用空格填充，实际多长就是多长</p>
-<h5 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 表名;</span><br></pre></td></tr></table></figure>
+<p>好像很简单，我们就实现了 this.$toast() ，接下来显示不同位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// toast.js[&apos;bottom&apos;, &apos;center&apos;, &apos;top&apos;].forEach(type =&gt; &#123;    Vue.prototype.$toast[type] = (tips) =&gt; &#123;        return Vue.prototype.$toast(tips,type)    &#125;&#125;)</span><br></pre></td></tr></table></figure>
 
-<h5 id="表约束"><a href="#表约束" class="headerlink" title="表约束"></a>表约束</h5><p>1.非空约束    NOT NULL</p>
-<p>2.默认值约束  DEFAULT ‘男’</p>
-<p>3.唯一约束    UNIQUE4.主键约束    PRIMARY KEY</p>
-<h5 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h5><p>DESC 表名</p>
-<h5 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h5><h5 id="修改列名"><a href="#修改列名" class="headerlink" title="修改列名"></a>修改列名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alter table 表名  change  列名  新列名 类型;</span><br></pre></td></tr></table></figure>
+<p>这里把 type 传给 $toast 在该方法里进行不同位置的处理，上面说了通过添加不同的类名(toast-bottom、toast-top、toast-center)来实现，那 $toast 方法需要小小修改一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$toast = (tips,type) =&gt; &#123;     // 添加 type 参数    let toastTpl = Vue.extend(&#123;             // 模板添加位置类        data()&#123;            return &#123;                show: showToast            &#125;        &#125;,        template: &apos;&lt;div v-show=&quot;show&quot; class=&quot;vue-toast toast-&apos;+ type +&apos;&quot;&gt;&apos; + tips + &apos;&lt;/div&gt;&apos;    &#125;);    ...&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="修改列类型"><a href="#修改列类型" class="headerlink" title="修改列类型"></a>修改列类型</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alter table 表名  change 列名  列名  新类型;</span><br></pre></td></tr></table></figure>
+<p>好像差不多了。但是如果我想默认在顶部显示，我每次都要调用 this.$toast.top() 好像就有点多余了，我能不能 this.$toast() 就直接在我想要的地方呢？还有我不想要 2.5s 后才消失呢？这时候注意到 Toast.install(Vue,options) 里的 options 参数，我们可以在 Vue.use() 通过 options 传进我们想要的参数。最后修改插件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Toast = &#123;&#125;;var showToast = false;Toast.install = function (Vue, options) &#123;    let opt = &#123;        defaultType:&apos;bottom&apos;,   // 默认显示位置        duration:&apos;2500&apos;         // 持续时间    &#125;    for(let property in options)&#123;        opt[property] = options[property];  // 使用 options 的配置    &#125;    Vue.prototype.$toast = (tips,type) =&gt; &#123;        if(type)&#123;            opt.defaultType = type;         // 如果有传type，位置则设为该type        &#125;        if(showToast)&#123;            // 如果toast还在，则不再执行            return;        &#125;        let toastTpl = Vue.extend(&#123;            data()&#123;                return &#123;                    show: showToast                &#125;            &#125;,            template: &apos;&lt;div v-show=&quot;show&quot; class=&quot;vue-toast toast-&apos;+opt.defaultType+&apos;&quot;&gt;&apos; + tips + &apos;&lt;/div&gt;&apos;        &#125;);        var vm = new toastTpl()        var tpl = vm.$mount().$el;                document.body.appendChild(tpl);        vm.show = showToast = true;                setTimeout(function () &#123;            vm.show = showToast = false;        &#125;, opt.duration)    &#125;    [&apos;bottom&apos;, &apos;center&apos;, &apos;top&apos;].forEach(type =&gt; &#123;        Vue.prototype.$toast[type] = (tips) =&gt; &#123;            return Vue.prototype.$toast(tips,type)        &#125;    &#125;)&#125;module.exports = Toast;</span><br></pre></td></tr></table></figure>
 
-<h5 id="修改列类型-1"><a href="#修改列类型-1" class="headerlink" title="修改列类型"></a>修改列类型</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alter table 表名  modify  列名  新类型;</span><br></pre></td></tr></table></figure>
-
-<h5 id="数据查询-单表"><a href="#数据查询-单表" class="headerlink" title="==============================数据查询-单表================================="></a>==============================数据查询-单表=================================</h5><h5 id="查询表中全部信息"><a href="#查询表中全部信息" class="headerlink" title="查询表中全部信息"></a>查询表中全部信息</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表名;</span><br></pre></td></tr></table></figure>
-
-<h5 id="查询表中指定列的信息"><a href="#查询表中指定列的信息" class="headerlink" title="查询表中指定列的信息"></a>查询表中指定列的信息</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 列1,列2 from 表名;</span><br></pre></td></tr></table></figure>
-
-<p>语句的执行顺序：from—&gt;select</p>
-<h5 id="数据去重"><a href="#数据去重" class="headerlink" title="数据去重"></a>数据去重</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct 列…. From 表名;</span><br></pre></td></tr></table></figure>
-
-<h5 id="拼接结果"><a href="#拼接结果" class="headerlink" title="拼接结果"></a>拼接结果</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select concat(列1,列2) from 表名;</span><br></pre></td></tr></table></figure>
-
-<h5 id="运算符优先级："><a href="#运算符优先级：" class="headerlink" title="运算符优先级："></a>运算符优先级：</h5><p>1.乘法和除法的优先级高于加法和减法<br>2.同级运算的顺序是从左到右<br>3.表达式中使用”括号”可强行改变优先级的运算顺序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 列1[+-*/]列2 from 表名;</span><br></pre></td></tr></table></figure>
-
-<h5 id="设置别名-注意：关键字as可以省略"><a href="#设置别名-注意：关键字as可以省略" class="headerlink" title="设置别名(注意：关键字as可以省略)"></a>设置别名(注意：关键字as可以省略)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select 列 as 别名 from 表名;  </span><br><span class="line">select 列 别名 from 表名;</span><br></pre></td></tr></table></figure>
-
-<p> 语句的执行顺序：from—&gt;select</p>
-<h5 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 列… from 表名 where 条件;</span><br></pre></td></tr></table></figure>
-
-<h5 id="条件中比较运算符：-等于-大于-gt-大于等于-gt-小于-lt-小于等于-lt-不等于-或-lt-gt"><a href="#条件中比较运算符：-等于-大于-gt-大于等于-gt-小于-lt-小于等于-lt-不等于-或-lt-gt" class="headerlink" title="条件中比较运算符：( 等于:=  大于:&gt;  大于等于:&gt;=  小于:&lt;  小于等于:&lt;=  不等于:!= 或 &lt;&gt;  )"></a>条件中比较运算符：( 等于:=  大于:&gt;  大于等于:&gt;=  小于:&lt;  小于等于:&lt;=  不等于:!= 或 &lt;&gt;  )</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where 列  比较运算符  值;</span><br></pre></td></tr></table></figure>
-
-<p>注意:字符串、日期需使用单引号括起来<br>语句的执行顺序：from—&gt;where—&gt;select</p>
-<h5 id="逻辑运算符-并且-and-或-amp-amp-或-or-非-not-或"><a href="#逻辑运算符-并且-and-或-amp-amp-或-or-非-not-或" class="headerlink" title="逻辑运算符( 并且:and 或 &amp;&amp;   或:or    非:not 或 !    )"></a>逻辑运算符( 并且:and 或 &amp;&amp;   或:or    非:not 或 !    )</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">where 条件1  逻辑运算符  条件2;  </span><br><span class="line">where not 条件;</span><br></pre></td></tr></table></figure>
-
-<h5 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where 列 between 条件1  and 条件2;</span><br></pre></td></tr></table></figure>
-
-<p>//列在这个区间的值where 列 not between 条件1 and 条件2;    </p>
-<p>//不在这个区间where !( 列 between 条件1 and 条件2 );    </p>
-<p>//同样表示不在这个区间</p>
-<h5 id="集合查询-判断列的值是否在指定的集合中"><a href="#集合查询-判断列的值是否在指定的集合中" class="headerlink" title="集合查询( 判断列的值是否在指定的集合中 )"></a>集合查询( 判断列的值是否在指定的集合中 )</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where 列 in(值1,值2);</span><br></pre></td></tr></table></figure>
-
-<p>//列中的数据是in后的值里面的where 列 not in(值1,值2);   </p>
-<p>//不是in中指定值的数据</p>
-<h5 id="NULL值查询-注意：列中值为null不能使用-去查询"><a href="#NULL值查询-注意：列中值为null不能使用-去查询" class="headerlink" title="NULL值查询( 注意：列中值为null不能使用=去查询 )"></a>NULL值查询( 注意：列中值为null不能使用=去查询 )</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where 列 is null;</span><br></pre></td></tr></table></figure>
-
-<p>//查询列中值为null的数据</p>
-<h5 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h5><h5 id="：表示0到多个字符，示例："><a href="#：表示0到多个字符，示例：" class="headerlink" title="%：表示0到多个字符，示例："></a>%：表示0到多个字符，示例：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where 列 like &apos;%0&apos;;</span><br></pre></td></tr></table></figure>
-
-<p> //表示以0结尾where 列 like  ‘0%’;   </p>
-<p>//表示以0开头where 列 like  ‘%0%’;  </p>
-<p> //表示数据中包含0</p>
-<h5 id="：表示一个字符，可多次使用，示例："><a href="#：表示一个字符，可多次使用，示例：" class="headerlink" title="_：表示一个字符，可多次使用，示例："></a>_：表示一个字符，可多次使用，示例：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where 列 like &apos;%0_&apos;;</span><br></pre></td></tr></table></figure>
-
-<p>//数据结尾第二位是0</p>
-<h5 id="结果排序-对查询出的结果按照一列或多列进行升序还是降序排列-升序-asc-降序-desc-注意：不能使用中文的别名排序"><a href="#结果排序-对查询出的结果按照一列或多列进行升序还是降序排列-升序-asc-降序-desc-注意：不能使用中文的别名排序" class="headerlink" title="结果排序( 对查询出的结果按照一列或多列进行升序还是降序排列 升序:asc  降序:desc    注意：不能使用中文的别名排序)"></a>结果排序( 对查询出的结果按照一列或多列进行升序还是降序排列 升序:asc  降序:desc    注意：不能使用中文的别名排序)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where 条件 order by 列 [asc/desc]</span><br></pre></td></tr></table></figure>
-
-<p>语句的执行顺序：from—&gt;where—&gt;select—&gt;order by</p>
-<h5 id="分页查询-beginIndex-表示从第多少条数据开始-pageSize-表示每页显示的数据条数"><a href="#分页查询-beginIndex-表示从第多少条数据开始-pageSize-表示每页显示的数据条数" class="headerlink" title="分页查询( beginIndex:表示从第多少条数据开始   pageSize:表示每页显示的数据条数 )"></a>分页查询( beginIndex:表示从第多少条数据开始   pageSize:表示每页显示的数据条数 )</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where [条件] limit beginIndex,pageSize;</span><br></pre></td></tr></table></figure>
-
-<p>ex：每页显示3条数据<br>第一页: SELECT * FROM 表名 LIMIT 0,3    –0,1,2<br>第二页: SELECT * FROM 表名 LIMIT 3,3    –3,4,5<br>第三页: SELECT * FROM 表名 LIMIT 6,3    –6,7,8<br>第四页: SELECT * FROM 表名 LIMIT 9,3    –9,10,11<br>  ……<br>第七页: SELECT * FROM 表名 LIMIT 18,3   –18,19,20</p>
-<h5 id="beginIndex公式：-当前页数-1-pageSize"><a href="#beginIndex公式：-当前页数-1-pageSize" class="headerlink" title="beginIndex公式：(当前页数-1)*pageSize"></a>beginIndex公式：(当前页数-1)*pageSize</h5><h5 id="聚集函数-作用于一组数据，并对一组数据返回一个值"><a href="#聚集函数-作用于一组数据，并对一组数据返回一个值" class="headerlink" title="聚集函数( 作用于一组数据，并对一组数据返回一个值 )"></a>聚集函数( 作用于一组数据，并对一组数据返回一个值 )</h5><h5 id="COUNT-统计结果记录数，若统计的是列，列中为Null，那么count将不会计算值"><a href="#COUNT-统计结果记录数，若统计的是列，列中为Null，那么count将不会计算值" class="headerlink" title="COUNT:统计结果记录数，若统计的是列，列中为Null，那么count将不会计算值"></a>COUNT:统计结果记录数，若统计的是列，列中为Null，那么count将不会计算值</h5><h5 id="MAX-统计计算最大值"><a href="#MAX-统计计算最大值" class="headerlink" title="MAX:  统计计算最大值"></a>MAX:  统计计算最大值</h5><h5 id="MIN-统计计算最小值"><a href="#MIN-统计计算最小值" class="headerlink" title="MIN:  统计计算最小值"></a>MIN:  统计计算最小值</h5><h5 id="SUM-统计计算求和"><a href="#SUM-统计计算求和" class="headerlink" title="SUM:  统计计算求和"></a>SUM:  统计计算求和</h5><h5 id="AVG-统计计算平均值"><a href="#AVG-统计计算平均值" class="headerlink" title="AVG:  统计计算平均值"></a>AVG:  统计计算平均值</h5><h5 id="分组函数-注意：如果要对分组后的数据进行筛选，那么必须使用having关键字，条件写在having后"><a href="#分组函数-注意：如果要对分组后的数据进行筛选，那么必须使用having关键字，条件写在having后" class="headerlink" title="分组函数( 注意：如果要对分组后的数据进行筛选，那么必须使用having关键字，条件写在having后 )"></a>分组函数( 注意：如果要对分组后的数据进行筛选，那么必须使用having关键字，条件写在having后 )</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 聚集函数 from 表名 where [条件] group by 列 having 分组后的条件</span><br></pre></td></tr></table></figure>
-
-<p>语句的执行顺序：FROM—&gt; WHERE—&gt;group by—-&gt;Having—&gt;SELECT–&gt;ORDER BY</p>
-<h5 id="Where和having的区别："><a href="#Where和having的区别：" class="headerlink" title="Where和having的区别："></a>Where和having的区别：</h5><h5 id="Where-先过滤已有的数据-数据是已经存在的-在进行分组-在聚集计算"><a href="#Where-先过滤已有的数据-数据是已经存在的-在进行分组-在聚集计算" class="headerlink" title="Where: 先过滤已有的数据(数据是已经存在的),在进行分组,在聚集计算"></a>Where: 先过滤已有的数据(数据是已经存在的),在进行分组,在聚集计算</h5><h5 id="Having-先分组-在对每组进行计算-根据得到结果在过滤-分组把数据算出之后，在过滤"><a href="#Having-先分组-在对每组进行计算-根据得到结果在过滤-分组把数据算出之后，在过滤" class="headerlink" title="Having:先分组,在对每组进行计算,根据得到结果在过滤(分组把数据算出之后，在过滤)"></a>Having:先分组,在对每组进行计算,根据得到结果在过滤(分组把数据算出之后，在过滤)</h5><p>注意：使用having的时候，它是可以使用别名的</p>
-<h5 id="数据查询-多表"><a href="#数据查询-多表" class="headerlink" title="===============================数据查询-多表==============================="></a>===============================数据查询-多表===============================</h5><h5 id="交叉连接-又名笛卡尔积，使用交叉连接会产生笛卡尔积"><a href="#交叉连接-又名笛卡尔积，使用交叉连接会产生笛卡尔积" class="headerlink" title="交叉连接:又名笛卡尔积，使用交叉连接会产生笛卡尔积"></a>交叉连接:又名笛卡尔积，使用交叉连接会产生笛卡尔积</h5><p>假设集合A={a, b}，集合B={0, 1, 2}，则两个集合的笛卡尔积为{(a, 0), (a, 1), (a, 2), (b, 0), (b, 1), (b, 2)}。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select *  from 表1,表2</span><br></pre></td></tr></table></figure>
-
-<h5 id="内连接：过滤为空的数据-查询的实际上是两张表数据的交集部分-目的-》解决笛卡尔积现象，正确查询了需要的数据"><a href="#内连接：过滤为空的数据-查询的实际上是两张表数据的交集部分-目的-》解决笛卡尔积现象，正确查询了需要的数据" class="headerlink" title="内连接：过滤为空的数据(查询的实际上是两张表数据的交集部分)    目的 ==》解决笛卡尔积现象，正确查询了需要的数据"></a>内连接：过滤为空的数据(查询的实际上是两张表数据的交集部分)    目的 ==》解决笛卡尔积现象，正确查询了需要的数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表1,表2  where 表1.字段=表2.字段;</span><br></pre></td></tr></table></figure>
-
-<p>//隐式内连接,使用where条件消除笛卡尔积</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表1 [inner] join 表2 on 表1.字段=表2.字段;</span><br></pre></td></tr></table></figure>
-
-<p> //显式内连接,如果是多张表，则一直在join..on后依次添加join..on即可,inner关键字可被省略</p>
-<h5 id="外连接：左外连接、右外连接、全外连接"><a href="#外连接：左外连接、右外连接、全外连接" class="headerlink" title="外连接：左外连接、右外连接、全外连接"></a>外连接：左外连接、右外连接、全外连接</h5><h5 id="左外连接-以左边表为主，返回左边表中所有数据，若右表中无数据，则显示为NULL，请参考实际查询结果来理解"><a href="#左外连接-以左边表为主，返回左边表中所有数据，若右表中无数据，则显示为NULL，请参考实际查询结果来理解" class="headerlink" title="左外连接:以左边表为主，返回左边表中所有数据，若右表中无数据，则显示为NULL，请参考实际查询结果来理解"></a>左外连接:以左边表为主，返回左边表中所有数据，若右表中无数据，则显示为NULL，请参考实际查询结果来理解</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表1 left [outer] join 表2 on 表1.字段=表2.字段;</span><br></pre></td></tr></table></figure>
-
-<p>//表1为左表，表2为右表,outer关键字可被省略</p>
-<h5 id="右外连接：以右边表为主，返回右表中所有数据，若左表中无数据，则显示为NULL，结合实际查询结果来理解"><a href="#右外连接：以右边表为主，返回右表中所有数据，若左表中无数据，则显示为NULL，结合实际查询结果来理解" class="headerlink" title="右外连接：以右边表为主，返回右表中所有数据，若左表中无数据，则显示为NULL，结合实际查询结果来理解"></a>右外连接：以右边表为主，返回右表中所有数据，若左表中无数据，则显示为NULL，结合实际查询结果来理解</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from 表1 right [outer] join 表2 on 表1.字段=表2.字段;</span><br></pre></td></tr></table></figure>
-
-<p>//表1为左表，表2为右表,outer关键字可被省略</p>
-<h5 id="全外连接：返回涉及的多表中的所有数据，MYSQL中不支持该查询，仅限了解自连接：单表当作多表查询，直白的讲就是一张表中数据含有多种关系，使用多表查询的语法，来查询一张表，查询过程中一定要使用别名"><a href="#全外连接：返回涉及的多表中的所有数据，MYSQL中不支持该查询，仅限了解自连接：单表当作多表查询，直白的讲就是一张表中数据含有多种关系，使用多表查询的语法，来查询一张表，查询过程中一定要使用别名" class="headerlink" title="全外连接：返回涉及的多表中的所有数据，MYSQL中不支持该查询，仅限了解自连接：单表当作多表查询，直白的讲就是一张表中数据含有多种关系，使用多表查询的语法，来查询一张表，查询过程中一定要使用别名"></a>全外连接：返回涉及的多表中的所有数据，MYSQL中不支持该查询，仅限了解自连接：单表当作多表查询，直白的讲就是一张表中数据含有多种关系，使用多表查询的语法，来查询一张表，查询过程中一定要使用别名</h5><p>多用在分类数据、省市县分类数据、权限…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 表1.字段1,表2.字段2 from 表名 as 表1,表名 as 表2 where 表1.字段1=表2.字段2</span><br></pre></td></tr></table></figure>
-
-<h5 id="子查询：将一个查询结果作为另一个查询的对象，直白的讲就是SQL语句嵌套"><a href="#子查询：将一个查询结果作为另一个查询的对象，直白的讲就是SQL语句嵌套" class="headerlink" title="子查询：将一个查询结果作为另一个查询的对象，直白的讲就是SQL语句嵌套"></a>子查询：将一个查询结果作为另一个查询的对象，直白的讲就是SQL语句嵌套</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from (select * from 表名) as 别名select * from where 条件</span><br></pre></td></tr></table></figure>
-
-<p>//条件中包含查询语句</p>
-<p>注意：1.查询结果的虚拟表必须取别名<br>           2.字段与关键字一样，冲突时，需要给字段名加``,(Esc键下面、1的左边)<br>           3.如果给虚拟结果表中的字段取了别名，则对虚拟结果表查询时，应该用 表别名.虚拟表字段别名</p>
-<h5 id="插入数据"><a href="#插入数据" class="headerlink" title="===============================插入数据==============================="></a>===============================插入数据===============================</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名(字段1,字段2..) values(值1,值2…);</span><br></pre></td></tr></table></figure>
-
-<p>注意： 1.如果插入的表中的主键是自增类型的，可以不用插入值<br>            2.如果主键是非自增 ，插入的数据则是填补主键字段值空余的值<br>            3.如果主键设置了自动递增，会从主键字段最大值开始插入数据</p>
-<h5 id="其他插入方式："><a href="#其他插入方式：" class="headerlink" title="其他插入方式："></a>其他插入方式：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into 表名(字段1,字段2) values(值1,值2),(值1,值2);</span><br></pre></td></tr></table></figure>
-
-<p>//插入多条数据【MYSQL】insert into 表名 values(值1,值2);                    </p>
-<p>//针对全表所有字段进行插入操作insert into 表名(字段) select 字段 from 表2;         </p>
-<p>//查询结果插入insert into 表名 select 字段 from 表2;               </p>
-<p>//查询结果，全表插入</p>
-<h5 id="修改数据"><a href="#修改数据" class="headerlink" title="===============================修改数据==============================="></a>===============================修改数据===============================</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update 表 set 字段=值 where 条件;</span><br></pre></td></tr></table></figure>
-
-<p> //带条件修改指定数据，否则修改全表</p>
-<h5 id="删除数据"><a href="#删除数据" class="headerlink" title="===============================删除数据==============================="></a>===============================删除数据===============================</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from 表 where 条件;</span><br></pre></td></tr></table></figure>
-
-<p>//删除数据带条件指定数据，否则删除全表数据</p>
-<h5 id="数据备份"><a href="#数据备份" class="headerlink" title="===============================数据备份==============================="></a>===============================数据备份===============================</h5><h5 id="在命令行窗口进行，若操作系统版本高，则使用管理员模式"><a href="#在命令行窗口进行，若操作系统版本高，则使用管理员模式" class="headerlink" title="在命令行窗口进行，若操作系统版本高，则使用管理员模式"></a>在命令行窗口进行，若操作系统版本高，则使用管理员模式</h5><p>导出：</p>
-<p>mysqldump -u账户 -p密码 数据库名称&gt;脚本文件存储地</p>
-<p>ex:         mysqldump -uroot -proot jdbcdemo&gt; C:/shop_bak.sql<br>导入：</p>
-<p>mysql -u账户 -p密码 数据库名称&lt; 脚本文件存储地址</p>
-<p>ex:         mysql -uroot -proot jdbcdemo&lt; C:/shop_bak.sql<br>使用可视化导入导出：<br>Navicat工具的导入和导出/Navicat工具的备份和还原</p>
-<h5 id="数据索引"><a href="#数据索引" class="headerlink" title="===============================数据索引==============================="></a>===============================数据索引===============================</h5><h5 id="索引的作用相当于图书的目录，可以根据目录中的页码快速找到所需的内容。"><a href="#索引的作用相当于图书的目录，可以根据目录中的页码快速找到所需的内容。" class="headerlink" title="索引的作用相当于图书的目录，可以根据目录中的页码快速找到所需的内容。"></a>索引的作用相当于图书的目录，可以根据目录中的页码快速找到所需的内容。</h5><h5 id="什么列适合建索引？？"><a href="#什么列适合建索引？？" class="headerlink" title="什么列适合建索引？？"></a>什么列适合建索引？？</h5><p>1.表的主键、外键必须有索引；<br>2.数据量超过30000的表应该有索引；<br>3.经常与其他表进行连接的表，在连接字段上应该建立索引；<br>4.经常出现在Where子句中的字段，特别是大表的字段，应该建立索引；<br>5.索引应该建在选择性高的字段上；<br>6.索引应该建在小字段上，对于大的文本字段甚至超长字段，不要建索引； </p>
-<h5 id="sql语句创建和删除索引："><a href="#sql语句创建和删除索引：" class="headerlink" title="sql语句创建和删除索引："></a>sql语句创建和删除索引：</h5><p>创建索引: </p>
-<p>CREATE INDEX 索引名称 ON 表名 (列名)</p>
-<p>删除索引:<br>方式一：</p>
-<p>DROP INDEX 索引名 ON 表名 </p>
-<p>方式二:  </p>
-<p>ALTER TABLE 表名 DROP INDEX 索引名 </p>
+<p>这样子一个简单的 vue 插件就实现了，并且可以通过 npm 打包发布，下次就可以使用 npm install 来安装了。</p>
+<p>源码地址：<a href="https://github.com/lin-xin/vue-toast" target="_blank" rel="noopener">vue-toast</a></p>
 
       
 
@@ -380,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/30/MySQL数据库增删改查SQL语句/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/25/Vue-js-插件开发详解/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -394,18 +297,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/11/25/Vue-js-插件开发详解/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/11/25/Vuex-模块化实现待办事项的状态管理/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Vue.js 插件开发详解
+          Vuex 模块化实现待办事项的状态管理
         
       </div>
     </a>
   
   
-    <a href="/2019/10/11/JAVA面对对象知识点总结/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JAVA面对对象知识点总结</div>
+    <a href="/2019/10/30/MySQL数据库增删改查SQL语句/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL数据库增删改查SQL语句</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -152,6 +152,372 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JavaScript-中-apply-、call-的详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/JavaScript-中-apply-、call-的详解/">JavaScript 中 apply 、call 的详解</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/JavaScript-中-apply-、call-的详解/" class="archive-article-date">
+  	<time datetime="2019-11-25T14:32:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ECMAScript 规范给所有函数都定义了 call 与 apply 两个方法，它们的应用非常广泛，它们的作用也是一模一样，只是传参的形式有区别而已。</p>
+<h2 id="apply"><a href="#apply" class="headerlink" title="apply( )"></a>apply( )</h2><p>apply 方法传入两个参数：一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;    name : &apos;linxin&apos;&#125;function func(firstName, lastName)&#123;    console.log(firstName + &apos; &apos; + this.name + &apos; &apos; + lastName);&#125;func.apply(obj, [&apos;A&apos;, &apos;B&apos;]);    // A linxin B</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，obj 是作为函数上下文的对象，函数 func 中 this 指向了 obj 这个对象。参数 A 和 B 是放在数组中传入 func 函数，分别对应 func 参数的列表元素。</p>
+<h2 id="call"><a href="#call" class="headerlink" title="call( )"></a>call( )</h2><p>call 方法第一个参数也是作为函数上下文的对象，但是后面传入的是一个参数列表，而不是单个数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;    name: &apos;linxin&apos;&#125;function func(firstName, lastName) &#123;    console.log(firstName + &apos; &apos; + this.name + &apos; &apos; + lastName);&#125;func.call(obj, &apos;C&apos;, &apos;D&apos;);       // C linxin D</span><br></pre></td></tr></table></figure>
+
+<p>对比 apply 我们可以看到区别，C 和 D 是作为单独的参数传给 func 函数，而不是放到数组中。</p>
+<p>对于什么时候该用什么方法，其实不用纠结。如果你的参数本来就存在一个数组中，那自然就用 apply，如果参数比较散乱相互之间没什么关联，就用 call。</p>
+<h2 id="apply-和-call-的用法"><a href="#apply-和-call-的用法" class="headerlink" title="apply 和 call 的用法"></a>apply 和 call 的用法</h2><h3 id="1-改变-this-指向"><a href="#1-改变-this-指向" class="headerlink" title="1.改变 this 指向"></a>1.改变 this 指向</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;    name: &apos;linxin&apos;&#125;function func() &#123;    console.log(this.name);&#125;func.call(obj);       // linxin</span><br></pre></td></tr></table></figure>
+
+<p>我们知道，call 方法的第一个参数是作为函数上下文的对象，这里把 obj 作为参数传给了 func，此时函数里的 this 便指向了 obj 对象。此处 func 函数里其实相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function func() &#123;    console.log(obj.name);&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-借用别的对象的方法"><a href="#2-借用别的对象的方法" class="headerlink" title="2.借用别的对象的方法"></a>2.借用别的对象的方法</h3><p>先看例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Person1  = function () &#123;    this.name = &apos;linxin&apos;;&#125;var Person2 = function () &#123;    this.getname = function () &#123;        console.log(this.name);    &#125;    Person1.call(this);&#125;var person = new Person2();person.getname();       // linxin</span><br></pre></td></tr></table></figure>
+
+<p>从上面我们看到，Person2 实例化出来的对象 person 通过 getname 方法拿到了 Person1 中的 name。因为在 Person2 中，Person1.call(this) 的作用就是使用 Person1 对象代替 this 对象，那么 Person2 就有了 Person1  中的所有属性和方法了，相当于 Person2 继承了 Person1 的属性和方法。</p>
+<h3 id="3-调用函数"><a href="#3-调用函数" class="headerlink" title="3.调用函数"></a>3.调用函数</h3><p>apply、call 方法都会使函数立即执行，因此它们也可以用来调用函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function func() &#123;    console.log(&apos;linxin&apos;);&#125;func.call();            // linxin</span><br></pre></td></tr></table></figure>
+
+<h2 id="call-和-bind-的区别"><a href="#call-和-bind-的区别" class="headerlink" title="call 和 bind 的区别"></a>call 和 bind 的区别</h2><p>在 EcmaScript5 中扩展了叫 bind 的方法，在低版本的 IE 中不兼容。它和 call 很相似，接受的参数有两部分，第一个参数是是作为函数上下文的对象，第二部分参数是个列表，可以接受多个参数。<br>它们之间的区别有以下两点。</p>
+<h3 id="1-bind-发返回值是函数"><a href="#1-bind-发返回值是函数" class="headerlink" title="1.bind 发返回值是函数"></a>1.bind 发返回值是函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;    name: &apos;linxin&apos;&#125;function func() &#123;    console.log(this.name);&#125;var func1 = func.bind(obj);func1();                        // linxin</span><br></pre></td></tr></table></figure>
+
+<p>bind 方法不会立即执行，而是返回一个改变了上下文 this 后的函数。而原函数 func 中的 this 并没有被改变，依旧指向全局对象 window。</p>
+<h3 id="2-参数的使用"><a href="#2-参数的使用" class="headerlink" title="2.参数的使用"></a>2.参数的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function func(a, b, c) &#123;    console.log(a, b, c);&#125;var func1 = func.bind(null,&apos;linxin&apos;);func(&apos;A&apos;, &apos;B&apos;, &apos;C&apos;);            // A B Cfunc1(&apos;A&apos;, &apos;B&apos;, &apos;C&apos;);           // linxin A Bfunc1(&apos;B&apos;, &apos;C&apos;);                // linxin B Cfunc.call(null, &apos;linxin&apos;);      // linxin undefined undefined</span><br></pre></td></tr></table></figure>
+
+<p>call 是把第二个及以后的参数作为 func 方法的实参传进去，而 func1 方法的实参实则是在 bind 中参数的基础上再往后排。</p>
+<p>在低版本浏览器没有 bind 方法，我们也可以自己实现一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (!Function.prototype.bind) &#123;    Function.prototype.bind = function () &#123;        var self = this,                        // 保存原函数            context = [].shift.call(arguments), // 保存需要绑定的this上下文            args = [].slice.call(arguments);    // 剩余的参数转为数组        return function () &#123;                    // 返回一个新函数            self.apply(context,[].concat.call(args, [].slice.call(arguments)));        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/JavaScript-中-apply-、call-的详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript-中-this-的详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/JavaScript-中-this-的详解/">JavaScript 中 this 的详解</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/JavaScript-中-this-的详解/" class="archive-article-date">
+  	<time datetime="2019-11-25T14:26:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>this 是 js 中定义的关键字，它自动定义于每一个函数域内，但是它的指向却让人很迷惑。在实际应用中，this 的指向大致可以分为以下四种情况。</p>
+<h2 id="this-的指向"><a href="#this-的指向" class="headerlink" title="this 的指向"></a>this 的指向</h2><h3 id="1-作为普通函数调用"><a href="#1-作为普通函数调用" class="headerlink" title="1.作为普通函数调用"></a>1.作为普通函数调用</h3><p>当函数作为一个普通函数被调用，this 指向全局对象。在浏览器里，全局对象就是 window。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.name = &apos;linxin&apos;;function getName()&#123;    console.log(this.name);&#125;getName();                   // linxin</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，此时 this 指向了全局对象 window。<br>在ECMAScript5的严格模式下，这种情况 this 已经被规定不会指向全局对象了，而是 undefined。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;;function fun()&#123;    console.log(this);&#125;fun();                      // undefined</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-作为对象的方法调用"><a href="#2-作为对象的方法调用" class="headerlink" title="2.作为对象的方法调用"></a>2.作为对象的方法调用</h3><p>当函数作为一个对象里的方法被调用，this 指向该对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;    name : &apos;linxin&apos;,    getName : function()&#123;        console.log(this.name);    &#125;&#125;obj.getName();              // linxin</span><br></pre></td></tr></table></figure>
+
+<p>如果把对象的方法赋值给一个变量，再调用这个变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;    fun1 : function()&#123;        console.log(this);    &#125;&#125;var fun2 = obj.fun1;fun2();                     // window</span><br></pre></td></tr></table></figure>
+
+<p>此时调用 fun2 方法 输出了 window 对象，说明此时 this 指向了全局对象。给 fun2 赋值，其实是相当于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fun2 = function()&#123;    console.log(this);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，此时的 this 已经跟 obj 没有任何关系了。这时 fun2 是作为普通函数调用。</p>
+<h3 id="3-作为构造函数调用"><a href="#3-作为构造函数调用" class="headerlink" title="3.作为构造函数调用"></a>3.作为构造函数调用</h3><p>js中没有类，但是可以从构造器中创建对象，并提供了 new 运算符来进行调用该构造器。构造器的外表跟普通函数一样，大部分的函数都可以当做构造器使用。当构造函数被调用时，this 指向了该构造函数实例化出来的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Person = function()&#123;    this.name = &apos;linxin&apos;;&#125;var obj = new Person();console.log(obj.name);      // linxin</span><br></pre></td></tr></table></figure>
+
+<p>如果构造函数显式的返回一个对象，那么 this 则会指向该对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Person = function()&#123;    this.name = &apos;linxin&apos;;    return &#123;        name : &apos;linshuai&apos;    &#125;&#125;var obj = new Person();console.log(obj.name);      // linshuai</span><br></pre></td></tr></table></figure>
+
+<p>如果该函数不用 new 调用，当作普通函数执行，那么 this 依然指向全局对象。</p>
+<h3 id="4-call-或-apply-调用"><a href="#4-call-或-apply-调用" class="headerlink" title="4.call() 或 apply() 调用"></a>4.call() 或 apply() 调用</h3><p>通过调用函数的 call() 或 apply() 方法可动态的改变 this 的指向。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = &#123;    name : &apos;linxin&apos;,    getName : function()&#123;        console.log(this.name);    &#125;&#125;var obj2 = &#123;    name : &apos;linshuai&apos;&#125;obj1.getName();             // linxinobj1.getName.call(obj2);    // linshuaiobj1.getName.apply(obj2);   // linshuai</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/JavaScript-中-this-的详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Vuex-模块化实现待办事项的状态管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/Vuex-模块化实现待办事项的状态管理/">Vuex 模块化实现待办事项的状态管理</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/Vuex-模块化实现待办事项的状态管理/" class="archive-article-date">
+  	<time datetime="2019-11-25T14:22:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在vue里，组件之间的作用域是独立的，父组件跟子组件之间的通讯可以通过prop属性来传参，但是在兄弟组件之间通讯就比较麻烦了。比如A组件要告诉一件事给B组件，那么A就要先告诉他们的爸组件，然后爸组件再告诉B。当组件比较多，要互相通讯的事情很多的话，爸组件要管他们那么多事，很累的。vuex正是为了解决这个问题，让多个子组件之间可以方便的通讯。</p>
+<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>待办事项中的一个事件，它可能拥有几个状态，未完成、已完成、已取消或被删除等。这个事件需要在这多种状态之间切换，那么使用vuex来管理也是非常方便的。</p>
+<p>来看一下vuex怎么完成状态管理的：</p>
+<p><img src="https://raw.githubusercontent.com/lin-xin/notepad/master/screenshots/1.png" alt="image"></p>
+<p>所有组件都是调用actions，分发mutation去修改state，然后state经过getter又更新到各个组件里。state又通过localStorage存储数据到本地，下次重新打开时再读取保存的数据。</p>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>为什么要用模块化？当我们的项目比较大，组件很多，功能也多，会导致state里要存放很多内容，整个 store 都会很庞大，很难管理。<br>当我们使用模块化，每个模块拥有自己的 state、mutation、action、getter，这样子我们就可以把我们的项目根据功能划分为多个模块去使用vuex了，而且后期维护也不会一脸懵逼。</p>
+<h2 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h2><p>接下来，我们来看看vuex完成状态管理的一个流程。<br>举个栗子：一个待办事项，勾选之后，会在未完成列表里移除，并在已完成的列表里出现。这个过程，是这个待办事项的状态发生了改变。勾选的时候，是执行了一个方法，那我们就先写这个方法。在 event_list.vue 文件里新建一个moveToDone方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;    moveToDone(id)&#123; //移至已完成        this.$store.dispatch(&apos;eventdone&apos;, id);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 moveToDone 方法中通过 store.dispatch 方法触发 action, 接下来我们在 eventModule/actions.js 中来注册这个 action, 接受一个 id 的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;    eventdone = (&#123; commit &#125;, param) =&gt;&#123;        commit(&apos;EVENTDONE&apos;,&#123;id: param&#125;);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>action 通过调用 store.commit 提交载荷(也就是{id: param}这个对象)到名为’EVENTDONE’的 mutation，那我们再来注册这个 mutation</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;    EVENTDONE(states,obj)&#123;        for (let i = 0; i &lt; states.event.length; i++) &#123;            if (states.event[i].id === obj.id) &#123;                states.event[i].type = 2;                states.event[i].time = getDate();                var item = states.event[i];                states.event.splice(i, 1);          // 把该事件在数组中删除                break;            &#125;        &#125;        states.event.unshift(item);                 // 把该事件存到数组的第一个元素        local.set(states);                          // 将整个状态存到本地    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过 mutation 去修改 state, state里我们存放了一个 event 属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;    event: []&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>在组件中要获得这个 state 里的 event, 那就需要写个getters</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;    getDone(states)&#123;        return states.event.filter(function (d) &#123;            if (d.type === 2) &#123;                 // type == 2表示已完成                return d;                       // 返回已完成的事件            &#125;        &#125;);    &#125;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后每个module里都有一个index.js文件，把自己的state、mutation、action、getters都集合起来，就是一个module</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import * as func from &apos;../function&apos;;import actions from &apos;./actions.js&apos;;import mutations from &apos;./mutations.js&apos;;import state from &apos;./state.js&apos;;import getters from &apos;./getters.js&apos;;export default &#123;    state,    getters,    actions,    mutations&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 store/index.js 里创建一个 store 对象来存放这个module</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;;import Vuex from &apos;vuex&apos;;import event from &apos;./eventModule&apos;;Vue.use(Vuex);export default new Vuex.Store(&#123;    modules: &#123;        event    &#125;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>最后在 event_list.vue 组件上，我们通过计算属性 computed 来获取到这个从未完成的状态改变到已完成的状态，我们要用到 store 这个对象里的getters</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;    getDone()&#123;        return this.$store.getters.getDone;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样子，完成了 ‘未完成’ =&gt; ‘已完成’ 从提交修改到更新视图读取的整个流程，也是 vuex 工作的整个流程。通过 module 的封装，更加方便多模块项目的开发和维护。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/Vuex-模块化实现待办事项的状态管理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Vue-js-插件开发详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/Vue-js-插件开发详解/">Vue.js 插件开发详解</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/Vue-js-插件开发详解/" class="archive-article-date">
+  	<time datetime="2019-11-25T14:18:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>随着 Vue.js 越来越火，Vue.js 的相关插件也在不断的被贡献出来，数不胜数。比如官方推荐的 vue-router、vuex 等，都是非常优秀的插件。但是我们更多的人还只停留在使用的阶段，比较少自己开发。所以接下来会通过一个简单的 vue-toast 插件，来了解掌握插件的开发和使用。</p>
+<h2 id="认识插件"><a href="#认识插件" class="headerlink" title="认识插件"></a>认识插件</h2><p>想要开发插件，先要认识一个插件是什么样子的。</p>
+<p>Vue.js 的插件应当有一个公开方法 install 。这个方法的第一个参数是 Vue 构造器 , 第二个参数是一个可选的选项对象:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyPlugin.install = function (Vue, options) &#123;  Vue.myGlobalMethod = function () &#123;  // 1. 添加全局方法或属性，如: vue-custom-element    // 逻辑...  &#125;  Vue.directive(&apos;my-directive&apos;, &#123;  // 2. 添加全局资源：指令/过滤器/过渡等，如 vue-touch    bind (el, binding, vnode, oldVnode) &#123;      // 逻辑...    &#125;    ...  &#125;)  Vue.mixin(&#123;    created: function () &#123;  // 3. 通过全局 mixin方法添加一些组件选项，如: vuex      // 逻辑...    &#125;    ...  &#125;)  Vue.prototype.$myMethod = function (options) &#123;  // 4. 添加实例方法，通过把它们添加到 Vue.prototype 上实现    // 逻辑...  &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来要讲到的 vue-toast 插件则是通过添加实例方法实现的。我们先来看个小例子。先新建个js文件来编写插件：toast.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// toast.jsvar Toast = &#123;&#125;;Toast.install = function (Vue, options) &#123;    Vue.prototype.$msg = &apos;Hello World&apos;;&#125;module.exports = Toast;</span><br></pre></td></tr></table></figure>
+
+<p>在 main.js 中，需要导入 toast.js 并且通过全局方法 Vue.use() 来使用插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// main.jsimport Vue from &apos;vue&apos;;import Toast from &apos;./toast.js&apos;;Vue.use(Toast);</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们在组件中来获取该插件定义的 $msg 属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// App.vueexport default &#123;    mounted()&#123;        console.log(this.$msg);         // Hello World    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，控制台成功的打印出了 Hello World 。既然 $msg 能获取到，那么我们就可以来实现我们的 vue-toast 插件了。</p>
+<h2 id="开发-vue-toast"><a href="#开发-vue-toast" class="headerlink" title="开发 vue-toast"></a>开发 vue-toast</h2><p>需求：在组件中通过调用 this.$toast(‘网络请求失败’) 来弹出提示，默认在底部显示。可以通过调用 this.$toast.top() 或 this.$toast.center() 等方法来实现在不同位置显示。 </p>
+<p>整理一下思路，弹出提示的时候，我可以在 body 中添加一个 div 用来显示提示信息，不同的位置我通过添加不同的类名来定位，那就可以开始写了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// toast.jsvar Toast = &#123;&#125;;var showToast = false;  // showToast 用于存储toast的显示状态Toast.install = function (Vue, options) &#123;    Vue.prototype.$toast = (tips) =&gt; &#123;        let toastTpl = Vue.extend(&#123;     // 1、创建构造器，定义好提示信息的模板            data()&#123;                return &#123;                    show: showToast                &#125;            &#125;,            template: &apos;&lt;div v-show=&quot;show&quot; class=&quot;vue-toast&quot;&gt;&apos; + tips + &apos;&lt;/div&gt;&apos;        &#125;);        var vm = new toastTpl();        // 2、创建实例        var tpl = vm.$mount().$el;      // 3、挂载实例                document.body.appendChild(tpl); // 4、使用原生DOM API把它插入文档中        vm.show = showToast = true;     // 5、显示该元素                setTimeout(function () &#123;        // 6、延迟2.5秒后隐藏该元素            vm.show = showToast = false;        &#125;, 2500)    &#125;&#125;module.exports = Toast;</span><br></pre></td></tr></table></figure>
+
+<p>好像很简单，我们就实现了 this.$toast() ，接下来显示不同位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// toast.js[&apos;bottom&apos;, &apos;center&apos;, &apos;top&apos;].forEach(type =&gt; &#123;    Vue.prototype.$toast[type] = (tips) =&gt; &#123;        return Vue.prototype.$toast(tips,type)    &#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这里把 type 传给 $toast 在该方法里进行不同位置的处理，上面说了通过添加不同的类名(toast-bottom、toast-top、toast-center)来实现，那 $toast 方法需要小小修改一下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$toast = (tips,type) =&gt; &#123;     // 添加 type 参数    let toastTpl = Vue.extend(&#123;             // 模板添加位置类        data()&#123;            return &#123;                show: showToast            &#125;        &#125;,        template: &apos;&lt;div v-show=&quot;show&quot; class=&quot;vue-toast toast-&apos;+ type +&apos;&quot;&gt;&apos; + tips + &apos;&lt;/div&gt;&apos;    &#125;);    ...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>好像差不多了。但是如果我想默认在顶部显示，我每次都要调用 this.$toast.top() 好像就有点多余了，我能不能 this.$toast() 就直接在我想要的地方呢？还有我不想要 2.5s 后才消失呢？这时候注意到 Toast.install(Vue,options) 里的 options 参数，我们可以在 Vue.use() 通过 options 传进我们想要的参数。最后修改插件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Toast = &#123;&#125;;var showToast = false;Toast.install = function (Vue, options) &#123;    let opt = &#123;        defaultType:&apos;bottom&apos;,   // 默认显示位置        duration:&apos;2500&apos;         // 持续时间    &#125;    for(let property in options)&#123;        opt[property] = options[property];  // 使用 options 的配置    &#125;    Vue.prototype.$toast = (tips,type) =&gt; &#123;        if(type)&#123;            opt.defaultType = type;         // 如果有传type，位置则设为该type        &#125;        if(showToast)&#123;            // 如果toast还在，则不再执行            return;        &#125;        let toastTpl = Vue.extend(&#123;            data()&#123;                return &#123;                    show: showToast                &#125;            &#125;,            template: &apos;&lt;div v-show=&quot;show&quot; class=&quot;vue-toast toast-&apos;+opt.defaultType+&apos;&quot;&gt;&apos; + tips + &apos;&lt;/div&gt;&apos;        &#125;);        var vm = new toastTpl()        var tpl = vm.$mount().$el;                document.body.appendChild(tpl);        vm.show = showToast = true;                setTimeout(function () &#123;            vm.show = showToast = false;        &#125;, opt.duration)    &#125;    [&apos;bottom&apos;, &apos;center&apos;, &apos;top&apos;].forEach(type =&gt; &#123;        Vue.prototype.$toast[type] = (tips) =&gt; &#123;            return Vue.prototype.$toast(tips,type)        &#125;    &#125;)&#125;module.exports = Toast;</span><br></pre></td></tr></table></figure>
+
+<p>这样子一个简单的 vue 插件就实现了，并且可以通过 npm 打包发布，下次就可以使用 npm install 来安装了。</p>
+<p>源码地址：<a href="https://github.com/lin-xin/vue-toast" target="_blank" rel="noopener">vue-toast</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/Vue-js-插件开发详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MySQL数据库增删改查SQL语句" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
